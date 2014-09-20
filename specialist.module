@@ -1,0 +1,48 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Alexey
+ * Date: 20.09.14
+ * Time: 17:17
+ */
+
+function specialist_menu()
+{
+    $item = array();
+    $item['my_page'] = array(
+        'title' => 'Форма для связи с БД',
+        'type' => MENU_NORMAL_ITEM,
+        'page callback' => 'main_page_specialist',
+        'access callback' => TRUE
+    );
+
+    return $item;
+}
+
+
+
+function main_page_specialist(){
+    $forma = drupal_get_form('specialist_main_form');
+    return drupal_render($forma);
+}
+
+//Создание формы
+function specialist_main_form(){
+    //Создаем массив, который будет элементами формы
+    $form = array();
+
+//Заполняем эелементы формы
+
+    //Создаем одно текстовое поле Имя, '#type' и '#title' берем из Forms API
+    $form['name'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Ваше имя'
+    );
+    //Создаем текстовое поле Отправить
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Отправить'
+    );
+
+    return $form;
+}
